@@ -1,0 +1,984 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap');
+
+/* Reset */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, tbody, tfoot, thead, tr, th, td {margin:0;padding:0;}
+* {
+  margin: 0;
+  padding: 0;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+}
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+li {
+  list-style: none;
+}
+/* Layout */
+body {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 15px;
+}
+.wrap {
+  width: 100%;
+  margin: 0 auto;
+  background: #fff;
+  position: relative;
+}
+
+/* header */
+header {
+  width: 100%;
+  position: fixed;
+  padding-top: 30px;
+  z-index: 100;
+  transition: all .7s;
+}
+.innerHeader {
+  height: 80px;
+  padding: 0 80px;
+}
+.innerHeader .logo {
+  width: 170px;
+  height: 60px;
+  float: left;
+  margin-right: 180px;
+}
+.innerHeader .logo a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.innerHeader .logo a img {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.innerHeader .introTxt {
+  float: left;
+  text-transform: uppercase;
+  color: #fff;
+  line-height: 70px;
+}
+.innerHeader .menuOpen {
+  float: right;
+  display: block;
+  color: #fff;
+  font-size: 16px;
+  margin-top: 20px;
+  font-weight: bold;
+}
+.innerHeader .menuOpen span {
+  margin-left: 15px;
+  font-size: 33px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: -6px;
+}
+/* fix header */
+header.on {
+  padding: 20px 0 0;
+  transition: all .7s;
+}
+header:before{
+  content: '';
+  width: 100%;
+  height: 0;
+  background: #222;
+  position: absolute;
+  top: 0;
+  z-index: -1;
+}
+header.on:before {
+  height: 100%;
+  border-bottom: 1px solid #2c2c2c;
+}
+/* gnb */
+.gnb {
+  padding: 70px 50px;
+  height: 100vh;
+  color: #666;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 200;
+  box-sizing: border-box;
+  transition: all .8s;
+  background: #000;
+  right: -100%;
+}
+.gnb.on {
+  right: 0;
+  transition: all .8s;
+}
+.gnb .close {
+  font-size: 40px;
+  color: #fff;
+  float: right;
+  display: block;
+}
+.gnb ul {
+  float: left;
+  margin-right: 70px;
+}
+.gnb ul li a {
+  display: block;
+  font-size: 30px;
+  font-weight: bold;
+  line-height: 1.7;
+  transition: all .05s;
+}
+.gnb ul li:first-child a, .gnb ul li:hover {
+  color: #fff;
+  transition: all .05s;
+}
+/* visual */
+.visual {
+  position: relative;
+}
+.visual .slide li {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  background: #222;
+}
+.visual .slide li img {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+}
+/* responsive web */
+.visual .slide li:nth-child(3) img{
+  top: 0;
+}
+.visual .slide li .txt {
+  position: absolute;
+  left: 10%;
+  top: 50%;
+  color: #fff;
+  font-size: 18px;
+  transform: translateY(-50%);
+}
+.visual .slide li .txt h3 {
+  font-size: 64px;
+  margin: 30px 0;
+}
+.visual .slide li .txt a {
+  display: inline-block;
+}
+.visual .slide li .txt span {
+  font-size: 14px;
+  margin-left: 5px;
+}
+.visual .slide li .scroll {
+  position: absolute;
+  left: 50px;
+  bottom: 10%;
+  transform: rotate(-90deg);
+  color: #ccc;
+  font-weight: bold;
+}
+/* header image slides - using slick.js */
+.slick-arrow {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  background: #fff;
+  z-index: 20;
+  text-indent: -9999px;
+  border: none;
+}
+.slick-arrow:after {
+  content: '<';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  color: #888;
+  font-size: 20px;
+  left: 0;
+  top: 0;
+  text-indent: 0px;
+  font-weight: 300;
+  transition: all .2s;
+}
+.slick-arrow.slick-prev {
+  bottom: 60px;
+}
+.slick-arrow.slick-next:after {
+  content: '>';
+}
+.slick-arrow:hover {
+  cursor: pointer;
+  background: #ccc;
+  transition: all .3s;
+}
+.slick-arrow:hover:after {
+  font-size: 28px;
+  color: #000000;
+  transition: all .2s;
+}
+.slick-active .txt p {
+  animation-name: txt1;
+  animation-duration: 1s;
+}
+@keyframes txt1 {
+  0% {
+    opacity: 0;
+    transform: rotateX(180deg) translateY(-150px);
+  }
+  20% {
+    opacity: 0;
+    transform: rotateX(180deg) translateY(-150px);
+  }
+  100% {
+    opacity: 1;
+    transform: rotateX(0) translateY(0);
+  }
+}
+.slick-active .txt a {
+  animation-name: txt2;
+  animation-duration: 1s;
+}
+@keyframes txt2 {
+  0% {
+    opacity: 0;
+    transform: rotateX(180deg) translateY(150px);
+  }
+  20% {
+    opacity: 0;
+    transform: rotateX(180deg) translateY(150px);
+  }
+  100% {
+    opacity: 1;
+    transform: rotateX(0) translateY(0);
+  }
+}
+.slick-active .txt h3 {
+  animation-name: txt3;
+  animation-duration: .8s;
+}
+@keyframes txt3 {
+  0% {
+    transform: translateX(0);
+  }
+  40% {
+    transform: translateX(-50px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.slick-active .scroll {
+  animation-name: scroll;
+  animation-duration: 1s;
+}
+@keyframes scroll {
+  0% {
+    opacity: 0;
+    left: -100px;
+  }
+  30% {
+    opacity: 0;
+    left: -100px;
+  }
+  100% {
+    opacity: 1;
+    left: 50px;
+  }
+}
+.slick-active img {
+  animation-name: img;
+  animation-duration: 1s;
+}
+@keyframes img {
+  0% {
+    opacity: 0;
+    right: -80px;
+    transform: scale(0.99);
+  }
+  100% {
+    opacity: 1;
+    right: 0;
+  }
+}
+/* about me */
+.contents {
+  background: #1b1b1b;
+  padding: 120px 0;
+  overflow: hidden;
+}
+.contents .mainText {
+  width: 1170px;
+  margin: 0 auto;
+  color: #fff;
+  position: relative;
+  padding-bottom: 60px;
+  overflow: hidden;
+}
+.contents .mainText:after {
+  content: '”';
+  font-size: 300px;
+  position: absolute;
+  left: 0;
+  top: 110px;
+}
+.contents .mainText:before {
+  content: '';
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: #ffec03;
+  position: absolute;
+  left: 50px;
+  top: 130px;
+}
+.contents .mainText h3 {
+  font-size: 25px;
+  font-weight: bold;
+  line-height: 1.2;
+  float: left;
+  width: 30%;
+}
+.contents .mainText h4 {
+  float: right;
+  width: 70%;
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+.contents .mainText h5 {
+  float: right;
+  width: 70%;
+  font-size: 23px;
+  margin-bottom: 20px;
+  font-style: italic;
+}
+.contents .mainText p {
+  float: right;
+  width: 70%;
+  font-size: 22px;
+  line-height: 1.4;
+  font-weight: 300;
+}
+.contents .mainText p span {
+  display: block;
+  margin-top: 60px;
+  font-size: 20px;
+  font-weight: 400;
+  color: #999;
+}
+/* projects */
+.contents .project {
+  color: #fff;
+}
+.contents .project .top {
+  width: 1170px;
+  height: 90px;
+  margin: 100px auto 30px;
+}
+.contents .project .top h3 {
+  font-size: 35px;
+  font-weight: bold;
+  line-height: 1.3;
+  float: left;
+}
+.contents .project .top a {
+  float: right;
+  font-size: 20px;
+  display: block;
+}
+.contents .project .top a span {
+  margin-left: 5px;
+}
+.contents .project ul {
+  clear: both;
+  width: 98%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.contents .project ul li {
+  float: left;
+  width: 24.2%;
+  margin-right: 1%;
+  overflow: hidden;
+}
+.contents .project ul li:last-child {
+  margin-right: 0;
+}
+.contents .project ul li a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: all .5s;
+}
+.contents .project ul li a img {
+  width: 100%;
+}
+.contents .project ul li a .name {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background: #1b1b1b;
+  padding: 15px 15px;
+  width: 250px;
+  box-sizing: border-box;
+  text-align: right;
+  font-size: 18px;
+}
+.contents .project ul li a .name span {
+  font-size: 15px;
+  font-weight: bold;
+}
+.contents .project ul li a .name h3 {
+  text-transform: uppercase;
+}
+.contents .project ul li a:hover {
+  transform: scale(1.1);
+  transition: all .7s;
+}
+/* skills */
+.contents .skills {
+  width: 1170px;
+  margin: 120px auto;
+  color: #fff;
+}
+.contents .skills h3 {
+  font-size: 35px;
+  font-weight: bold;
+  line-height: 1.3;
+}
+.contents .skills ul {
+  overflow: hidden;
+}
+.contents .skills ul li {
+  float: left;
+  width: 29%;
+  height: 100px;
+  margin-top: 80px;
+  text-align: center;
+}
+.contents .skills ul li:nth-child(1), .contents .skills ul li:nth-child(5){
+  width: 21%;
+  text-align: left;
+}
+.contents .skills ul li:nth-child(4n) {
+  width: 21%;
+  text-align: right;
+}
+.contents .skills ul li a {
+  display: inline-block;
+  opacity: 0.5;
+  transition: all .3s;
+}
+.contents .skills ul li a:hover {
+  opacity: 1;
+  transition: all .3s;
+}
+/* experience */
+.contents .experience {
+  width: 1170px;
+  margin: 0 auto;
+  color: #fff;
+  overflow: hidden;
+}
+.contents .experience h3 {
+  font-size: 35px;
+  font-weight: bold;
+  margin-bottom: 50px;
+}
+.contents .experience .wrapper {
+  width: 75%;
+  margin: 0 auto;
+}
+.contents .experience .wrapper ul {
+  margin: 0;
+  padding: 0;
+}
+.contents .experience .wrapper ul .list {
+  margin-bottom: 30px;
+}
+.contents .experience .wrapper ul li .checkbox {
+  display: none;
+}
+.contents .experience .wrapper ul li label {
+  display: block;
+  padding: 10px 35px;
+  border: 1px solid #fff;
+  border-bottom: none;
+  background-color: #fff;
+}
+.contents .experience .wrapper ul li label:hover {
+  opacity: 0.9;
+  cursor: pointer;
+}
+.contents .experience .wrapper ul li label.last {
+  border-bottom: 1px solid #fff;
+}
+.contents .experience .wrapper ul li label img {
+  vertical-align: middle;
+}
+.contents .experience .wrapper ul li label .info {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 35px;
+}
+.contents .experience .wrapper ul li label .info .job-title {
+  font-size: 30px;
+  font-weight: bold;
+  color: black;
+  margin-bottom: 5px;
+}
+.contents .experience .wrapper ul li label .info .company {
+  font-size: 25px;
+  font-weight: 400;
+  color: black;
+  margin-bottom: 5px;
+}
+.contents .experience .wrapper ul li label .info .address-date {
+  font-size: 20px;
+  font-weight: lighter;
+  color: #2C2B2A;
+}
+.contents .experience .wrapper ul li label .arrow{
+  float: right;
+  vertical-align: middle;
+  font-size: 30px;
+  margin-top: 30px;
+  color: #2C2B2A;
+}
+.contents .experience .wrapper ul ul li {
+  padding: 5px;
+  font-size: 20px;
+  color: #2C2B2A;
+  background: #fff;
+}
+input[type="checkbox"]{
+  position: absolute;
+}
+input[type="checkbox"] ~ ul {
+  height: 0;
+  transform: scaleY(0);
+  transition: all .3s;
+}
+input[type="checkbox"]:checked ~ ul {
+  height: 100%;
+  transform-origin: top;
+  transition: transform .5s ease-out;
+  transform: scaleY(1);
+  overflow: hidden;
+}
+input[type="checkbox"]:checked + label {
+  border-bottom: 1px solid #fff;
+}
+/* footer */
+footer {
+  background-color: #000000;
+  color: #999;
+  padding: 0 80px 80px;
+  position: relative;
+}
+footer ul {
+  overflow: hidden;
+}
+footer ul li {
+  float: left;
+  width: 33.33%;
+  margin-top: 70px;
+}
+footer ul li h4 {
+  font-size: 30px;
+  text-align: center;
+  text-transform: uppercase;
+}
+footer ul li p {
+  font-size: 20px;
+  font-weight: 300;
+  margin-left: 30px;
+  margin-top: 20px;
+  text-align: center;
+}
+footer ul li .social-media, footer ul li .contact {
+  text-align: center;
+}
+footer ul li .social-media a, footer ul li .contact a{
+  transition: all .5s;
+}
+footer ul li .social-media a:hover, footer ul li .contact a:hover {
+  color: #fcba03;
+  transition: all .5s;
+}
+footer ul li i {
+  margin: 20px 15px;
+}
+footer .goTop {
+  position: absolute;
+  font-size: 50px;
+  color: #fff;
+  right: 60px;
+  bottom: 60px;
+}
+/* responsive web*/
+/* 1200 px */
+@media screen and (max-width: 1200px) {
+  header .innerHeader .logo {
+    width: 150px;
+    margin-right: 10px;
+  }
+  .visual .slide li img {
+    width: auto;
+  }
+  .contents .mainText, .contents .project .top, .contents .skills, .contents .experience {
+    width: 90%;
+  }
+  .contents .project ul li a .name {
+    position: relative;
+    width: 100%;
+    padding-bottom: 30px;
+    font-size: 17px;
+  }
+  .contents .project ul li a .name:after {
+    content: '⟶';
+    position: absolute;
+    right: 15px;
+    bottom: 0;
+    font-size: 18px;
+  }
+  .contents .project ul li a:hover img {
+    transform: scale(1);
+  }
+  .contents .experience .wrapper ul li .info {
+    width: 60%;
+  }
+  footer .goTop {
+    right: 20px;
+    bottom: 20px;
+  }
+}
+/* 1024 px */
+@media screen and (max-width: 1024px) {
+  header .innerHeader .logo {
+    width: 150px;
+    margin-right: 10px;
+  }
+  .visual .slide li img {
+    width: auto;
+    right: -30%;
+  }
+  @keyframes img {
+    0% {
+      opacity: 0;
+      right: -50%;
+      transform: scale(0.99);
+    }
+    100% {
+      opacity: 1;
+      right: -30%;
+    }
+  }
+  .visual .slide li .txt h3 {
+    font-size: 45px;
+  }
+}
+/* 768 px */
+@media screen and (max-width: 768px) {
+  header {
+    padding-top: 20px;
+  }
+  header.on {
+    padding: 10px 0 0;
+  }
+  header .innerHeader{
+    padding: 0 30px;
+    height: 70px;
+  }
+  header .innerHeader .logo {
+    width: 150px;
+    margin-right: 10px;
+  }
+  header .innerHeader .introTxt {
+    line-height: 60px;
+  }
+  .gnb {
+    padding: 70px;
+  }
+  .gnb ul {
+    margin-right: 0;
+  }
+  .visual .slide li img {
+    width: auto;
+    right: -70%;
+  }
+  @keyframes img {
+    0% {
+      opacity: 0;
+      right: -80%;
+      transform: scale(0.99);
+    }
+    100% {
+      opacity: 1;
+      right: -68%;
+    }
+  }
+  .contents .mainText:after {
+    font-size: 280px;
+    top: 120px;
+  }
+  .contents .mainText:before {
+    width: 80px;
+    height: 80px;
+    top: 150px;
+  }
+  .contents .project ul {
+    width: 95%;
+  }
+  .contents .project ul li {
+    width: 49%;
+    margin-right: 2%;
+  }
+  .contents .project ul li:nth-child(2n){
+    margin-right: 0;
+  }
+  .contents .skills {
+    margin: 80px auto;
+  }
+  .contents .skills ul li {
+    width: 33.33%;
+    text-align: center;
+    margin-top: 45px;
+  }
+  .contents .skills ul li:nth-child(1), .contents .skills ul li:nth-child(5){
+    width: 33.33%;
+    text-align: center;
+  }
+  .contents .skills ul li:nth-child(4n) {
+    width: 33.33%;
+    text-align: center;
+  }
+  .contents .experience .wrapper ul li img {
+    width: 15%;
+  }
+  .contents .experience .wrapper ul li label .info .job-title {
+    font-size: 20px;
+  }
+  .contents .experience .wrapper ul li label .info .company {
+    font-size: 18px;
+  }
+  .contents .experience .wrapper ul li label .info .address-date {
+    font-size: 16px;
+  }
+  .contents .experience .wrapper ul ul li {
+    font-size: 15px;
+  }
+  .contents .experience .wrapper ul li label .arrow {
+    font-size: 20px;
+  }
+  footer ul li h4 {
+    font-size: 25px;
+  }
+  footer ul li p {
+    font-size: 15px;
+    float: left;
+  }
+  footer ul li .social-media a i, , footer ul li .contact a i {
+    display: inline-block;
+    font-size: 2em;
+    margin: 15px 5px;
+  }
+}
+/* 650px */
+@media screen and (max-width: 650px) {
+  body {
+    font-size: 14px;
+  }
+  header .innerHeader {
+    height: 55px;
+    padding: 0 15px;
+  }
+  header .innerHeader .logo {
+    width: 110px;
+    margin-right: 0;
+    margin-left: 20px;
+  }
+  header .innerHeader .introTxt {
+    line-height: 55px;
+  }
+  header .innerHeader .menuOpen {
+    color: transparent;
+    margin-top: 15px;
+  }
+  header .innerHeader .menuOpen span {
+    color: #fff;
+    font-size: 28px;
+  }
+  .gnb {
+    padding: 30px;
+  }
+  .gnb ul li a, .gnb .close {
+    font-size: 25px;
+  }
+  .visual .slide li img {
+    width: auto;
+    right: -120%;
+  }
+  @keyframes img {
+    0% {
+      opacity: 0;
+      right: -80%;
+      transform: scale(0.99);
+    }
+    100% {
+      opacity: 1;
+      right: -120%;
+    }
+  }
+  .visual .slide li .txt {
+    font-size: 18px;
+  }
+  .visual .slide li .txt h3 {
+    font-size: 30px;
+  }
+  .visual .slide li .scroll {
+    font-size: 18px;
+    left: 0;
+  }
+  @keyframes scroll {
+    0% {
+      opacity: 0;
+      left: -50px;
+    }
+    30% {
+      opacity: 0;
+      left: -80px;
+    }
+    100% {
+      opacity: 1;
+      left: 0px;
+    }
+  }
+  .slick-arrow {
+    width: 50px;
+    height: 50px;
+  }
+  .slick-arrow.slick-prev {
+    bottom: 50px;
+  }
+  .contents {
+    padding: 80px 0;
+  }
+  .contents .mainText h3 {
+    font-size: 20px;
+  }
+  .contents .mainText:after {
+    font-size: 220px;
+    top: 80px;
+    left: 10px;
+  }
+  .contents .mainText:before {
+    width: 80px;
+    height: 80px;
+    top: 100px;
+  }
+  .contents .mainText .aboutMe h4{
+    width: 60%;
+    font-size: 35px;
+  }
+  .contents .mainText .aboutMe h5 {
+    width: 60%;
+    font-size: 20px;
+  }
+  .contents .mainText .aboutMe p {
+    width: 60%;
+    font-size: 16px;
+  }
+  .contents .mainText .aboutMe p span {
+    font-size: 16px;
+    margin-top: 40px;
+  }
+  .contents .project .top {
+    margin: 40px auto 0px;
+  }
+  .contents .project ul {
+    width: 92%;
+  }
+  .contents .project ul li {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  .contents .project ul li a img {
+    width: 70%;
+  }
+  .contents .project ul li a .name {
+    width: 70%;
+    margin: 0 auto;
+    text-align: left;
+    font-size: 12px;
+  }
+  .contents .project ul li a .name:after {
+    right: 0;
+    bottom: 25px;
+  }
+  .contents .skills {
+    margin: 80px auto;
+  }
+  .contents .skills ul li {
+    width: 50%;
+    text-align: center;
+    margin-top: 45px;
+  }
+  .contents .skills ul li:nth-child(1), .contents .skills ul li:nth-child(5){
+    width: 50%;
+    text-align: center;
+  }
+  .contents .skills ul li:nth-child(4n) {
+    width: 50%;
+    text-align: center;
+  }
+  .contents .experience{
+    width: 95%;
+  }
+  .contents .experience .wrapper ul li img {
+    width: 15%;
+  }
+  .contents .experience .wrapper ul li label .info .job-title {
+    font-size: 18px;
+  }
+  .contents .experience .wrapper ul li label .info .company {
+    font-size: 16px;
+  }
+  .contents .experience .wrapper ul li label .info .address-date {
+    font-size: 13px;
+  }
+  .contents .experience .wrapper ul ul li {
+    font-size: 13px;
+  }
+  .contents .experience .wrapper ul li label .arrow {
+    font-size: 15px;
+  }
+  footer {
+    padding: 0 40px 40px;
+  }
+  footer ul li h4 {
+    font-size: 22px;
+  }
+  footer ul li p {
+    font-size: 13px;
+    margin: 10px 0 0 0;
+    float: none;
+  }
+  footer ul li .social-media a i, footer ul li .contact a i {
+    display: inline-block;
+    font-size: 2em;
+    margin: 10px 5px;
+  }
+}

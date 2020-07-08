@@ -9,6 +9,7 @@ This profile website briefly depicts me (Jason Choi) using HTML5, CSS, JavaScrip
 This website is responsive so that viewers can clearly see the contents that depict who I am even though they resize the window. <br/>
 Welcome to my website and hope all of you enjoy it!<br/>
 <br/>
+[Visit Website](https://jasonchoi.ga/)
 
 ## Installation
 1. Download the clone from this repository
